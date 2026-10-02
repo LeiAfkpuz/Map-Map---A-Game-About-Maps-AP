@@ -34,7 +34,7 @@ class StarChecks(DefaultOnToggle):
     Adds a check for earning a 3-star rating on each mission (61 checks).
     Treasure-digging missions have no rating and never get a star check.
     """
-    display_name = "Star Checks"
+    display_name = "3-Star Checks"
 
 
 class TreasureChecks(DefaultOnToggle):
