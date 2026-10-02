@@ -1,0 +1,16 @@
+# Build output (rebuild with tools/build_release.py)
+dist/
+plugin/bin/
+plugin/obj/
+
+# Python caches
+__pycache__/
+*.pyc
+
+# Editor / OS clutter
+.vs/
+.vscode/
+.idea/
+*.user
+Thumbs.db
+.DS_Store
