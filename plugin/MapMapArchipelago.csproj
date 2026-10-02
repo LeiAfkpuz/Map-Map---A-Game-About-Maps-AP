@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>MapMapArchipelago</AssemblyName>
+    <RootNamespace>MapMapArchipelago</RootNamespace>
+    <Version>0.1.0</Version>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <!-- Copy NuGet package DLLs (MultiClient.Net, Newtonsoft.Json) to the build output so we can ship them. -->
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <!-- Where Map Map is installed. Override with: dotnet build -p:GameDir="D:\Games\MapMap" -->
+    <GameDir Condition="'$(GameDir)' == ''">C:\Program Files (x86)\Steam\steamapps\common\MapMap - A Game About Maps</GameDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Third-party libraries shipped with the plugin (both MIT licensed). -->
+    <PackageReference Include="Archipelago.MultiClient.Net" Version="6.7.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Build-time only: BepInEx and the game's generated interop DLLs. Never shipped (Private=false). -->
+    <Reference Include="$(GameDir)\BepInEx\core\*.dll" Private="false" />
+    <Reference Include="$(GameDir)\BepInEx\interop\*.dll" Private="false" />
+  </ItemGroup>
+
+  <!-- After building, copy the plugin and its two libraries into the game's plugin folder for testing. -->
+  <Target Name="CopyToGame" AfterTargets="Build">
+    <ItemGroup>
+      <ShipFiles Include="$(OutDir)MapMapArchipelago.dll;$(OutDir)Archipelago.MultiClient.Net.dll;$(OutDir)Newtonsoft.Json.dll;assets\ap_treasure.png" />
+    </ItemGroup>
+    <Copy SourceFiles="@(ShipFiles)" DestinationFolder="$(GameDir)\BepInEx\plugins\MapMapArchipelago" />
+  </Target>
+
+</Project>
