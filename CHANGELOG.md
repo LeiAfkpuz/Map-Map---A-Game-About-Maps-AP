@@ -11,3 +11,4 @@
 - In-game connection panel (server / slot / password), automatic reconnect, offline check queue.
 - Separate save file per seed; the normal Map Map save is never touched while connected.
 - "Sent / Received" messages; Archipelago picture on buried treasure.
+- Optional Death Link: drowning sends a death; receiving one reloads your current island.

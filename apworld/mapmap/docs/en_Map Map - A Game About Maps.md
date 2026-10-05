@@ -43,6 +43,12 @@ Chosen in your options:
 - **Islands completed**: complete every mission on a chosen number of islands.
 - **All three stars**: earn a 3-star rating on every mission that has one.
 
+## Death Link
+
+Optional (`death_link`). Drowning counts as a death and is sent to everyone else with Death Link. When someone else
+dies, the island you're on reloads and you're put back at its starting point. Your progress is kept, but anything
+you were measuring is interrupted.
+
 ## What does another world's item look like in Map Map?
 
 Checks happen in-game as usual; a small message in the top-right corner tells you what you sent and to whom. Buried

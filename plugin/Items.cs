@@ -5,6 +5,7 @@ using UnityEngine;
 using _MapMap.Scripts.Game.Gameplay.CharacterController;
 using _MapMap.Scripts.Game.Gameplay.Tools;
 using _MapMap.Scripts.Game.Gameplay.UI.Map;
+using _MapMap.Scripts.Game.Gameplay.UI.Radial_Menu;
 using _MapMap.Scripts.Game.Gameplay.UI.Stickers;
 using _MapMap.Scripts.Game.Structure.Messages.Tools;
 using _MapMap.Scripts.Game.Structure.Savegame;
@@ -244,6 +245,16 @@ public static class Items
             if (ownedToolIds.Contains(message.toolID)) return true;
             Plugin.Log.LogInfo($"Blocked game tool unlock: id {message.toolID} (not received from AP)");
             return false;
+        }
+
+        // Tools, second listener: the tool wheel's buttons (UiToolOption) ALSO hear "tool unlocked" and make
+        // themselves usable. Gating only ToolManager let Island 14's story setup hand out the Build Tool,
+        // Shovel, Dividers and Camera through the wheel (found in a real multiworld run, 2026-10-04).
+        [HarmonyPrefix, HarmonyPatch(typeof(UiToolOption), nameof(UiToolOption.OnToolUnlockedMessage))]
+        private static bool WheelToolUnlock(ToolUnlockedMessage message)
+        {
+            if (!ApActive || granting || !ItemIds.ApControlledToolIds.Contains(message.toolID)) return true;
+            return ownedToolIds.Contains(message.toolID);
         }
 
         // Tools are all locked when an island starts loading; give back what's owned on the NEXT frame.

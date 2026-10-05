@@ -34,6 +34,7 @@ Requires Archipelago 0.6.7+ and BepInEx 6 (bleeding edge, Unity IL2CPP x64; test
 | `treasure_checks` | on | each buried treasure (40 checks, needs the Shovel) |
 | `floor_is_lava_checks` | on | each Floor Is Lava challenge (18 checks) |
 | `helpful_tool_logic` | on | Dividers (Islands 7–20) and Telescope (Islands 17–20) in logic |
+| `death_link` | off | Drowning sends a Death Link; receiving one reloads your current island (back to its start) |
 
 ## Known issues (0.1.0)
 

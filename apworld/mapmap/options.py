@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from Options import Choice, DefaultOnToggle, OptionGroup, PerGameCommonOptions, Range
+from Options import Choice, DeathLink, DefaultOnToggle, OptionGroup, PerGameCommonOptions, Range
 
 
 class Goal(Choice):
@@ -63,6 +63,13 @@ class HelpfulToolLogic(DefaultOnToggle):
     display_name = "Helpful Tool Logic"
 
 
+class MapMapDeathLink(DeathLink):
+    """
+    When you drown, everyone else with Death Link dies too; when someone else dies, the island you're on reloads
+    and you're sent back to its starting point (your progress is kept). Careful if you're mid-measurement!
+    """
+
+
 @dataclass
 class MapMapOptions(PerGameCommonOptions):
     goal: Goal
@@ -71,10 +78,12 @@ class MapMapOptions(PerGameCommonOptions):
     treasure_checks: TreasureChecks
     floor_is_lava_checks: FloorIsLavaChecks
     helpful_tool_logic: HelpfulToolLogic
+    death_link: MapMapDeathLink
 
 
 option_groups = [
     OptionGroup("Goal", [Goal, IslandsRequired]),
     OptionGroup("Checks", [StarChecks, TreasureChecks, FloorIsLavaChecks]),
     OptionGroup("Logic", [HelpfulToolLogic]),
+    OptionGroup("Death Link", [MapMapDeathLink]),
 ]

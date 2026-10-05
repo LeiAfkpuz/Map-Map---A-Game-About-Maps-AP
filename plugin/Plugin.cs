@@ -32,6 +32,7 @@ public class Plugin : BasePlugin
         harmony.PatchAll(typeof(Items.Patches));
         harmony.PatchAll(typeof(Travel.Patches));
         harmony.PatchAll(typeof(Checks.Patches));
+        harmony.PatchAll(typeof(DeathLinkHandler.Patches));
         AddComponent<PluginRunner>();
         Log.LogInfo($"{Name} {Version} loaded.");
     }
@@ -68,7 +69,7 @@ public class PluginRunner : MonoBehaviour
 
     private void Update()
     {
-        try { Plugin.Connection.RunMainThreadWork(); Goal.PollForEnding(); }
+        try { Plugin.Connection.RunMainThreadWork(); Goal.PollForEnding(); DeathLinkHandler.Update(); }
         catch (Exception e) { Plugin.Log.LogError($"Update: {e}"); }
     }
 

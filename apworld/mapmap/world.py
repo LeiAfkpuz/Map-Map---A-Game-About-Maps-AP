@@ -78,7 +78,7 @@ class MapMapWorld(World):
         if GAME_NAME in passthrough:
             slot_data = passthrough[GAME_NAME]
             for key in ("goal", "islands_required", "star_checks", "treasure_checks",
-                        "floor_is_lava_checks", "helpful_tool_logic"):
+                        "floor_is_lava_checks", "helpful_tool_logic", "death_link"):
                 if key in slot_data:
                     getattr(self.options, key).value = int(slot_data[key])
 
@@ -170,6 +170,7 @@ class MapMapWorld(World):
             "treasure_checks": int(self.options.treasure_checks.value),
             "floor_is_lava_checks": int(self.options.floor_is_lava_checks.value),
             "helpful_tool_logic": int(self.options.helpful_tool_logic.value),
+            "death_link": int(self.options.death_link.value),
             "starting_island": STARTING_ISLAND,
         }
 

@@ -191,6 +191,10 @@ public class ApConnection
         // once per item froze the game in testing (2026-10-02).
         session.Items.ItemReceived += _ => itemsChanged = true;
 
+        // Death Link, if this seed turned it on (DeathLinkHandler.cs).
+        bool deathLink = SlotData.TryGetValue("death_link", out var dl) && Convert.ToInt32(dl) == 1;
+        DeathLinkHandler.OnConnected(session, slot, deathLink);
+
         // "Sent X to Y" / "Received X from Y" popups (Notifications.cs).
         session.MessageLog.OnMessageReceived += message => OnMainThread(() => Notifications.OnServerMessage(message));
 
@@ -209,6 +213,7 @@ public class ApConnection
         if (Session == null) return;
         Plugin.Log.LogInfo("Disconnecting (player request)");
         nextReconnectTime = -1f;  // a deliberate disconnect stops auto-reconnect
+        DeathLinkHandler.OnDisconnected();
         var old = Session;
         Session = null;
         SlotData = null;
@@ -221,6 +226,7 @@ public class ApConnection
     {
         if (Status != State.Connected) return;  // already handled (e.g. the player clicked Disconnect)
         Plugin.Log.LogWarning($"Connection lost: {reason}");
+        DeathLinkHandler.OnDisconnected();
         Session = null;
         SlotData = null;
         Status = State.Disconnected;
