@@ -7,6 +7,9 @@
     <Version>0.1.0</Version>
     <LangVersion>latest</LangVersion>
     <Nullable>disable</Nullable>
+    <!-- The compiler embeds the build folder in the DLL (a debug-symbol hint). Replace it with a neutral "/_/" so
+         the shipped DLL doesn't contain the developer's local path or username. Doesn't affect how the mod runs. -->
+    <PathMap>$(MSBuildProjectDirectory)=/_/</PathMap>
     <!-- Copy NuGet package DLLs (MultiClient.Net, Newtonsoft.Json) to the build output so we can ship them. -->
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <!-- Where Map Map is installed. Override with: dotnet build -p:GameDir="D:\Games\MapMap" -->
