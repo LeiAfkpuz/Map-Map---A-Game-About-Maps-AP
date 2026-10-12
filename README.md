@@ -1,3 +1,5 @@
+# Removed from the AP discord due to the tightening of the rules regarding AI, not planning on making this a private repo. As far as I am aware, this is a fully functional mod and would hate to not let people continue to enjoy the randomization of this game. 
+
 # Map Map - A Game About Maps — Archipelago
 
 An [Archipelago](https://archipelago.gg) multiworld randomizer for
