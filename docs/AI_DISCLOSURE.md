@@ -39,6 +39,6 @@ means, so you can decide for yourself whether you want to play it.**
 
 - I'm not an experienced programmer. I understand what each part of the mod does and why, and I can troubleshoot it
   with the logs and the explanations in the code, but I did not write it line by line.
-- This is an early testing release (0.1.0). Known issues are listed in the [README](../README.md).
+- This is an early testing release (0.1.1). Known issues are listed in the [README](../README.md).
 
 If you have questions about any of this, ask me directly. I'd rather you make an informed choice.
