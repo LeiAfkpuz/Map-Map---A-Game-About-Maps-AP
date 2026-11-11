@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.1
+
+- The seed's goal is shown in the connection panel and the collapsed corner button: "Raven King's Cave",
+  "3-Star All Missions", or "#/# Islands Completed" (with live progress).
+
 ## 0.1.0 — first testing release
 
 - 20 islands playable in any order in story mode; each island keeps its own progress, including partway through a
