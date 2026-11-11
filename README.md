@@ -8,7 +8,7 @@ An [Archipelago](https://archipelago.gg) multiworld randomizer for
 Play the 20 islands in any order: islands, tools and abilities are items from the multiworld, and missions, 3-star
 ratings, buried treasures, Floor Is Lava challenges and landmarks are checks.
 
-**Status: 0.1.0 — early testing release.** Expect rough edges; please report anything odd (see *Reporting bugs*).
+**Status: 0.1.1 — early testing release.** Expect rough edges; please report anything odd (see *Reporting bugs*).
 
 > **AI disclosure:** the code in this project was written almost entirely by an AI (Claude), directed, reviewed and
 > tested in-game by myself. Full details of what the AI did and didn't do: [docs/AI_DISCLOSURE.md](docs/AI_DISCLOSURE.md).
@@ -38,7 +38,7 @@ Requires Archipelago 0.6.7+ and BepInEx 6 (bleeding edge, Unity IL2CPP x64; test
 | `helpful_tool_logic` | on | Dividers (Islands 7–20) and Telescope (Islands 17–20) in logic |
 | `death_link` | off | Drowning sends a Death Link; receiving one reloads your current island (back to its start) |
 
-## Known issues (0.1.0)
+## Known issues (0.1.1)
 
 - Returning to an island partway through a mission set replays that set's opening dialogue (your finished missions
   are kept; just click through).
