@@ -13,7 +13,7 @@ public class Plugin : BasePlugin
 {
     public const string Guid = "mapmap.archipelago";
     public const string Name = "Map Map Archipelago";
-    public const string Version = "0.1.0";
+    public const string Version = "0.1.1";
 
     // Must match GAME_NAME in the apworld (world.py) exactly, or the server rejects the login.
     public const string GameName = "Map Map - A Game About Maps";

@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>MapMapArchipelago</AssemblyName>
     <RootNamespace>MapMapArchipelago</RootNamespace>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <LangVersion>latest</LangVersion>
     <Nullable>disable</Nullable>
     <!-- The compiler embeds the build folder in the DLL (a debug-symbol hint). Replace it with a neutral "/_/" so

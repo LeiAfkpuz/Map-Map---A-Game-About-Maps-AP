@@ -19,6 +19,34 @@ public static class Goal
         return data != null && data.TryGetValue(key, out var value) ? System.Convert.ToInt32(value) : fallback;
     }
 
+    // The goal as shown in the connection panel (owner's wording). Slot data is only available while connected,
+    // so the last known goal is remembered and keeps showing while offline, until the seed is released on the
+    // main menu (ApState becomes null). Returns null when no AP seed is active.
+    private static int lastGoal = -1, lastRequired;
+
+    public static string Describe()
+    {
+        if (Plugin.Connection.ApState == null) { lastGoal = -1; return null; }
+        if (Plugin.Connection.SlotData != null)
+        {
+            lastGoal = SlotInt("goal", GoalIsland20);
+            lastRequired = SlotInt("islands_required", 10);
+        }
+        switch (lastGoal)
+        {
+            case GoalIslandsCompleted:
+                var mm = MissionManager.Instance;  // knows each island's set count; not loaded on the main menu
+                string done = mm != null ? Enumerable.Range(1, 20).Count(n => Travel.IsComplete(mm, n)).ToString() : "?";
+                return $"{done}/{lastRequired} Islands Completed";
+            case GoalAllThreeStars:
+                return "3-Star All Missions";
+            case GoalIsland20:
+                return "Raven King's Cave";
+            default:
+                return null;  // not connected yet this session
+        }
+    }
+
     // Safety net for the island_20 goal: if the ending cutscene scene loads, the cave was entered, even if
     // the mission-completed hook somehow didn't fire. Checked about once a second from PluginRunner.Update.
     private const string OutroScene = "Outro Cutscene";

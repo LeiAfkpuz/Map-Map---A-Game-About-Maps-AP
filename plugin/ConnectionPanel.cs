@@ -41,9 +41,14 @@ public class ConnectionPanel
         float scale = Screen.height / 1080f;
         GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(scale, scale, 1f));
 
+        // The seed's goal (Goal.Describe), shown in both the collapsed button and the full panel, so a player
+        // using someone else's YAML can see what they're aiming for.
+        string goal = Goal.Describe();
+
         if (!expanded)
         {
-            if (GUI.Button(new Rect(10, 10, 260, 26), "AP: " + connection.StatusText)) expanded = true;
+            string text = "AP: " + connection.StatusText + (goal != null ? "   |   Goal: " + goal : "");
+            if (GUI.Button(new Rect(10, 10, goal != null ? 520 : 260, 26), text)) expanded = true;
             return;
         }
 
@@ -60,7 +65,8 @@ public class ConnectionPanel
         bool remember = GUI.Toggle(new Rect(25, 190, 340, 22), settings.RememberPassword.Value, "Remember password (saved as plain text)");
         if (remember != settings.RememberPassword.Value) settings.RememberPassword.Value = remember;
 
-        GUI.Label(new Rect(25, 216, 350, 44), connection.StatusText);
+        GUI.Label(new Rect(25, 216, 350, 22), connection.StatusText);
+        if (goal != null) GUI.Label(new Rect(25, 238, 350, 22), "Goal: " + goal);
 
         switch (connection.Status)
         {
